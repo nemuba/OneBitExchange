@@ -2,11 +2,12 @@ require 'spec_helper'
 require 'json'
 require './app/services/exchange_service'
 
-describe 'Currrency' do
+describe 'Currency' do
   it 'exchange' do
     amount = rand(0..9999)
     res = ExchangeService.new("USD","BRL",amount).perform
-    expect(res.is_a? Numeric).to eql(true)
-    expect(res != 0 || amount == 0).to eql(true)
+    expect(res).to be_kind_of(Numeric)
+    expect(res).not_to be_zero
+    expect(amount).not_to be_zero
   end
 end
