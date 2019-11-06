@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
 
+  $('#amount').focus()
+
   $('form').submit ->
     if $('form').attr('action') == '/convert'
       $.ajax '/convert',
@@ -19,7 +21,7 @@ $(document).ready ->
             $('#result').val(data.value)
         return false;
 
-  $('#amount').on 'change', (event) ->
+  $('#amount').on 'change', () ->
     if $('form').attr('action') == '/convert'
       $.ajax '/convert',
           type: 'GET'
@@ -32,7 +34,7 @@ $(document).ready ->
           error: (jqXHR, textStatus, errorThrown) ->
             alert textStatus
           success: (data, text, jqXHR) ->
-            $('#result').val(data.value)
+            $('#result').val(data.value.toFixed(2))
             $('#result').focus()
             $('#amount').val('')
         return false;
