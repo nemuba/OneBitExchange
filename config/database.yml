@@ -24,9 +24,8 @@ default: &default
 
 development:
   <<: *default
-  user: <%= Rails.application.credentials.dig(:development, :postgres_user) %>
-  password: <%= Rails.application.credentials.dig(:development, :postgres_password) %>
-
+  host:  <%= Rails.application.credentials.dig(:development, :postgres_host) %>
+  username: <%= Rails.application.credentials.dig(:development, :postgres_user) %>
   database: OneBitExchange_development
 
   # The specified database role being used to connect to postgres.
